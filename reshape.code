@@ -1,0 +1,26 @@
+# Load data with full column specification to see types
+data <- readr::read_csv("歷年中華民國國民出國目的地人數統計2002-2024.csv", show_col_types = TRUE)
+
+# Clean column names
+data <- janitor::clean_names(data)
+
+# Convert all year columns to character type to ensure consistency
+data <- data |>
+  dplyr::mutate(across(matches("^x?\\d{4}$"), as.character))
+
+# Reshape data from wide to long format
+long_data <- data |>
+  tidyr::pivot_longer(cols = matches("^x?\\d{4}$"),
+                      names_to = "year",
+                      values_to = "travelers") |>
+  dplyr::mutate(
+    year = stringr::str_remove(year, "^x"),       # Remove 'x' prefix if exists
+    travelers = stringr::str_replace_all(travelers, ",", ""),  # Remove commas
+    travelers = dplyr::na_if(travelers, "-"),     # Replace '-' with NA
+    travelers = as.numeric(travelers)             # Convert to numeric
+  ) |>
+  dplyr::filter(!is.na(travelers)) |>
+  dplyr::ungroup()
+
+# View reshaped data
+print(long_data)
