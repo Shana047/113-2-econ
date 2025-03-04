@@ -1,0 +1,23 @@
+# Load data
+data <- readr::read_csv("11011.csv")
+
+# Clean column names for consistency
+data <- janitor::clean_names(data)
+
+# Check column names to verify
+print(names(data))
+
+# Reshape data from wide to long format
+long_data <- data |>
+  tidyr::pivot_longer(cols = -c(qu_yu_bie, xing_bie),  # Use cleaned column names
+                      names_to = "category",
+                      values_to = "population") |>
+  dplyr::mutate(
+    population = as.numeric(population)  # Convert population counts to numeric
+  ) |>
+  dplyr::filter(!is.na(population)) |>   # Remove rows with NA population values
+  dplyr::ungroup()
+
+# View reshaped data
+print(long_data)
+
