@@ -24,3 +24,4 @@ long_data <- data |>
 
 # View reshaped data
 print(long_data)
+
