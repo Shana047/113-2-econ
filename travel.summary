@@ -1,0 +1,27 @@
+# Load required libraries (if not already loaded)
+library(dplyr)
+
+# Summary of categorical variables (Factors)
+categorical_summary <- reshaped_travel_data |>
+  summarise(
+    Region_levels = n_distinct(首站抵達地),
+    Destination_levels = n_distinct(細分)
+  )
+
+# Summary of numerical variables (Integers)
+numerical_summary <- reshaped_travel_data |>
+  summarise(
+    Year_range = paste(min(Year, na.rm = TRUE), "-", max(Year, na.rm = TRUE)),
+    Travelers_min = min(Number_of_Travelers, na.rm = TRUE),
+    Travelers_max = max(Number_of_Travelers, na.rm = TRUE),
+    Travelers_mean = mean(Number_of_Travelers, na.rm = TRUE),
+    Travelers_median = median(Number_of_Travelers, na.rm = TRUE),
+    Travelers_SD = sd(Number_of_Travelers, na.rm = TRUE),
+    Travelers_NA_count = sum(is.na(Number_of_Travelers))
+  )
+
+# Print results
+list(
+  Categorical_Summary = categorical_summary,
+  Numerical_Summary = numerical_summary
+)

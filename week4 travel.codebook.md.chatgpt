@@ -1,0 +1,28 @@
+首站抵達地,細分,Year,Number_of_Travelers
+亞洲地區,日本Japan,2002,NA
+亞洲地區,日本Japan,2003,NA
+亞洲地區,日本Japan,2004,NA
+亞洲地區,日本Japan,2005,NA
+亞洲地區,日本Japan,2006,NA
+亞洲地區,日本Japan,2007,NA
+亞洲地區,日本Japan,2008,1309847
+亞洲地區,日本Japan,2009,1113857
+亞洲地區,日本Japan,2010,1377957
+亞洲地區,日本Japan,2011,1136394
+亞洲地區,日本Japan,2012,1560300
+亞洲地區,日本Japan,2013,2346007
+generate a codebook in Markdown syntax which covers: a table of variable names,classes,and meanings(gives some example if possible). A brief description of the dataset.
+***
+
+I have a data frame 'reshaped_travel_data'.Please parse its variables according to the following table 
+Information:
+| Variable Name         | Class    | Description                                                     | 
+|-----------------------|----------|-----------------------------------------------------------------|
+| **首站抵達地 (Region)**    | Factor | The region of origin for travelers arriving in Japan.          | "亞洲地區" (Asia Region)                   |
+| **細分 (Destination)**    | Factor | The specific country within the region (in this case, Japan).   | "日本Japan" (Japan)                       |
+| **Year**               | integer  | The year the data corresponds to.                               | 2002, 2003, 2004, etc.                    |
+| **Number_of_Travelers** | integer  | The total number of travelers arriving in Japan in the given year. "NA" indicates missing data. | 1309847, 1113857, 697981, etc. or "NA"   |
+
+
+
+

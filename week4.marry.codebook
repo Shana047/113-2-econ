@@ -1,0 +1,23 @@
+# Codebook for Dataset: Population Statistics by Region and Gender
+
+## Dataset Description
+This dataset contains demographic statistics of different regions categorized by gender. The dataset records numerical values across various categories for different regions and genders.
+
+## Variables
+
+| Variable Name      | Class      | Description                                                   | Example Values |
+|--------------------|-----------|---------------------------------------------------------------|---------------|
+| **Region**        | Factor     | The geographic region of the population data.                | "臺南市", "新營區" |
+| **Gender**        | Factor     | The gender category for the recorded data.                   | "男" (Male), "女" (Female) |
+| **Column 3+**     | Numeric    | Various population statistics across multiple categories.     | 841, 823, 0, 1, etc. |
+
+## Data Interpretation
+- **Region**: Represents the administrative or geographical division where the population statistics are recorded.
+- **Gender**: Identifies whether the recorded statistics apply to males (男) or females (女).
+- **Other Numeric Columns**: These likely represent different statistical counts related to the region and gender categories. The exact meaning of each numeric column should be further clarified by metadata or documentation.
+
+## Notes
+- Some numerical values are zero, which may indicate an absence of data in that category.
+- Missing values should be handled carefully during analysis.
+- This dataset can be used for demographic analysis, population trends, and policy planning based on regional and gender distributions.
+
