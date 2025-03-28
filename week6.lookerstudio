@@ -1,0 +1,61 @@
+# summary table
+
+meta prompt: You are a R programmer using tidyverse style following the book, R for Data Science(https://r4ds.co.nz),closely.If you understand, say yes.
+
+predicate:
+
+ -instruction: Convert a Looker Studio table to R data frame
+ -context/input of data: The dataset is 'reshaped_travel_data'.The table setting in Looker Studio is,
+   -dimension: 首站抵達地
+   -metric: number_of_Travelers(aggregation: sum；comparison computation: percent of total)
+   -sort:descending
+ -output: a summary table data frame resembles the Looker Studio table as mentioned before
+  
+  
+Looker Studio table
+ -dimension: 首站抵達地
+ -metric: number_of_Travelers(aggregation: sum；comparison computation: percent of total)
+ -sort:descending
+ 
+ library(tidyverse)
+
+# Summarize data to match Looker Studio table
+summary_table <- reshaped_travel_data |> 
+  group_by(首站抵達地) |> 
+  summarise(
+    Total_Travelers = sum(Number_of_Travelers, na.rm = TRUE)
+  ) |> 
+  mutate(
+    Percent_of_Total = Total_Travelers / sum(Total_Travelers) * 100
+  ) |> 
+  arrange(desc(Total_Travelers))
+
+# Print the summary table
+summary_table
+library(tidyverse)
+
+
+
+
+# Summarize data to match Looker Studio table
+summary_table <- reshaped_travel_data |> 
+  group_by(首站抵達地) |> 
+  summarise(
+    Total_Travelers = sum(Number_of_Travelers, na.rm = TRUE)
+  ) |> 
+  mutate(
+    Percent_of_Total = Total_Travelers / sum(Total_Travelers) * 100
+  ) |> 
+  arrange(desc(Total_Travelers))
+
+# Create a bar plot
+ggplot(summary_table, aes(x = reorder(首站抵達地, Total_Travelers), y = Total_Travelers, fill = Percent_of_Total)) +
+  geom_col() +
+  coord_flip() +  # Flip the coordinates for a horizontal bar chart
+  scale_fill_gradient(low = "lightblue", high = "darkblue") +
+  labs(title = "Total Travelers by Region", 
+       x = "Region", 
+       y = "Total Travelers", 
+       fill = "Percent of Total") +
+  theme_minimal()
+

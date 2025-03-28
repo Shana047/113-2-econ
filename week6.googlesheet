@@ -1,0 +1,22 @@
+# push a data frame to a Google sheets certain sheet
+ 
+ predicate:
+ 
+  -instruction: Export a data frame to Google sheets
+  -context/input data:
+   - data frame is ' summary_table'.
+   - Google sheets:
+     - link: https://docs.google.com/spreadsheets/d/12uYA_THZeJLUKra3gYdTtwJjJvdlhpKOT5jJVpvLGgk/edit?gid=0#gid=0
+     - sheet name: "summary table"
+     
+install.packages("googlesheets4")
+ 
+ library(googlesheets4)
+gs4_auth()
+
+# 指定 Google 試算表 ID（從網址中擷取）
+sheet_id <- "12uYA_THZeJLUKra3gYdTtwJjJvdlhpKOT5jJVpvLGgk"
+
+# 將 summary_table 寫入 Google Sheets
+sheet_write(summary_table, ss = sheet_id, sheet = "summary table")
+
